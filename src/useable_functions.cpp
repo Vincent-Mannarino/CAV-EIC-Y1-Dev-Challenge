@@ -26,6 +26,26 @@ std::vector<Coord> Ant::foodScan(MapTemplate &foodMap) {
     return foodLocations;
 }
 
+//runs foodScan and returns the closest food location to the ant's current position
+Coord Ant::closestFood(MapTemplate &foodMap) {
+    std::vector<Coord> foodLocations = this->foodScan(foodMap);
+    
+    if (foodLocations.empty()) {
+        return {-1, -1};   // "nothing visible"
+    }
+
+    Coord best = foodLocations[0];
+    int bestDistance = abs(foodLocations[0].first - this->position.first) + abs(foodLocations[0].second - this->position.second);
+
+    for (int i = 1; i < foodLocations.size(); ++i) {
+        if (abs(foodLocations[i].first - this->position.first) + abs(foodLocations[i].second - this->position.second) < bestDistance) {
+            best = foodLocations[i];
+            bestDistance = abs(foodLocations[i].first - this->position.first) + abs(foodLocations[i].second - this->position.second);
+        }
+    }
+    return best;
+}
+
 /** @brief Checks all squares within pheromoneRadius blocks of itself.
  *
  * @param pheromoneMap the pheromone layer of the world map
