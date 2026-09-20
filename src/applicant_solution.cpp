@@ -9,6 +9,26 @@
  * here are some existing examples of how calling these functions works to help get you started!
  */
 void AntWorld::forage() {
+        for (auto &ant : this->ants) {
+        Coord foodLoc = ant.closestFood(this->foodMap);
+
+        if (foodLoc == Coord(-1, -1)) {//if there is no food in sight, go back and forth until you run out of energy
+            while (ant.energy > 0) {
+                Coord destination = {ant.position.first + 1, ant.position.second + 1};
+                ant.move(this->terrainMap, destination, this->foodMap);
+
+                if (ant.energy <= 0) break;
+
+                destination = {ant.position.first - 1, ant.position.second - 1};
+                ant.move(this->terrainMap, destination, this->foodMap);
+            }
+        } else {//get the food and bring it home
+            ant.move(this->terrainMap, foodLoc, this->foodMap);
+            ant.returnHome(this->terrainMap, this->foodMap);
+        }
+    }
+    
+    
     // std::vector<Coord> visibleFood = this->ants[0].foodScan(this->foodMap);
     //
     // Coord desiredDestination = Coord(5, 5);
