@@ -1,0 +1,50 @@
+[
+{
+  "directory": "C:/Users/vince/Desktop/CAV-EIC-Y1-Dev-Challenge/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles\\dev_challenge.dir\\includes_CXX.rsp -g -std=c++20 -Wall -Wextra -Wpedantic -o CMakeFiles\\dev_challenge.dir\\src\\main.cpp.obj -c C:\\Users\\vince\\Desktop\\CAV-EIC-Y1-Dev-Challenge\\src\\main.cpp",
+  "file": "C:/Users/vince/Desktop/CAV-EIC-Y1-Dev-Challenge/src/main.cpp",
+  "output": "CMakeFiles/dev_challenge.dir/src/main.cpp.obj"
+},
+{
+  "directory": "C:/Users/vince/Desktop/CAV-EIC-Y1-Dev-Challenge/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles\\dev_challenge.dir\\includes_CXX.rsp -g -std=c++20 -Wall -Wextra -Wpedantic -o CMakeFiles\\dev_challenge.dir\\src\\applicant_solution.cpp.obj -c C:\\Users\\vince\\Desktop\\CAV-EIC-Y1-Dev-Challenge\\src\\applicant_solution.cpp",
+  "file": "C:/Users/vince/Desktop/CAV-EIC-Y1-Dev-Challenge/src/applicant_solution.cpp",
+  "output": "CMakeFiles/dev_challenge.dir/src/applicant_solution.cpp.obj"
+},
+{
+  "directory": "C:/Users/vince/Desktop/CAV-EIC-Y1-Dev-Challenge/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles\\dev_challenge.dir\\includes_CXX.rsp -g -std=c++20 -Wall -Wextra -Wpedantic -o CMakeFiles\\dev_challenge.dir\\src\\antworld.cpp.obj -c C:\\Users\\vince\\Desktop\\CAV-EIC-Y1-Dev-Challenge\\src\\antworld.cpp",
+  "file": "C:/Users/vince/Desktop/CAV-EIC-Y1-Dev-Challenge/src/antworld.cpp",
+  "output": "CMakeFiles/dev_challenge.dir/src/antworld.cpp.obj"
+},
+{
+  "directory": "C:/Users/vince/Desktop/CAV-EIC-Y1-Dev-Challenge/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles\\dev_challenge.dir\\includes_CXX.rsp -g -std=c++20 -Wall -Wextra -Wpedantic -o CMakeFiles\\dev_challenge.dir\\src\\useable_functions.cpp.obj -c C:\\Users\\vince\\Desktop\\CAV-EIC-Y1-Dev-Challenge\\src\\useable_functions.cpp",
+  "file": "C:/Users/vince/Desktop/CAV-EIC-Y1-Dev-Challenge/src/useable_functions.cpp",
+  "output": "CMakeFiles/dev_challenge.dir/src/useable_functions.cpp.obj"
+},
+{
+  "directory": "C:/Users/vince/Desktop/CAV-EIC-Y1-Dev-Challenge/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles\\antworld_tests.dir\\includes_CXX.rsp -g -std=c++20 -Wall -Wextra -Wpedantic -o CMakeFiles\\antworld_tests.dir\\test\\antworld_tests.cpp.obj -c C:\\Users\\vince\\Desktop\\CAV-EIC-Y1-Dev-Challenge\\test\\antworld_tests.cpp",
+  "file": "C:/Users/vince/Desktop/CAV-EIC-Y1-Dev-Challenge/test/antworld_tests.cpp",
+  "output": "CMakeFiles/antworld_tests.dir/test/antworld_tests.cpp.obj"
+},
+{
+  "directory": "C:/Users/vince/Desktop/CAV-EIC-Y1-Dev-Challenge/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles\\antworld_tests.dir\\includes_CXX.rsp -g -std=c++20 -Wall -Wextra -Wpedantic -o CMakeFiles\\antworld_tests.dir\\src\\applicant_solution.cpp.obj -c C:\\Users\\vince\\Desktop\\CAV-EIC-Y1-Dev-Challenge\\src\\applicant_solution.cpp",
+  "file": "C:/Users/vince/Desktop/CAV-EIC-Y1-Dev-Challenge/src/applicant_solution.cpp",
+  "output": "CMakeFiles/antworld_tests.dir/src/applicant_solution.cpp.obj"
+},
+{
+  "directory": "C:/Users/vince/Desktop/CAV-EIC-Y1-Dev-Challenge/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles\\antworld_tests.dir\\includes_CXX.rsp -g -std=c++20 -Wall -Wextra -Wpedantic -o CMakeFiles\\antworld_tests.dir\\src\\antworld.cpp.obj -c C:\\Users\\vince\\Desktop\\CAV-EIC-Y1-Dev-Challenge\\src\\antworld.cpp",
+  "file": "C:/Users/vince/Desktop/CAV-EIC-Y1-Dev-Challenge/src/antworld.cpp",
+  "output": "CMakeFiles/antworld_tests.dir/src/antworld.cpp.obj"
+},
+{
+  "directory": "C:/Users/vince/Desktop/CAV-EIC-Y1-Dev-Challenge/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles\\antworld_tests.dir\\includes_CXX.rsp -g -std=c++20 -Wall -Wextra -Wpedantic -o CMakeFiles\\antworld_tests.dir\\src\\useable_functions.cpp.obj -c C:\\Users\\vince\\Desktop\\CAV-EIC-Y1-Dev-Challenge\\src\\useable_functions.cpp",
+  "file": "C:/Users/vince/Desktop/CAV-EIC-Y1-Dev-Challenge/src/useable_functions.cpp",
+  "output": "CMakeFiles/antworld_tests.dir/src/useable_functions.cpp.obj"
+}
+]

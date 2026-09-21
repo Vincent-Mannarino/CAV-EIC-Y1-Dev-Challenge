@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Site BuildName="Win32-mingw32-make"
+	BuildStamp="20260920-2144-Experimental"
+	Name="HAL9000"
+	Generator="ctest-4.4.3"
+	CompilerName="C:/msys64/ucrt64/bin/g++.exe"
+	CompilerVersion="16.1.0"
+	OSName="Windows"
+	Hostname="HAL9000"
+	OSRelease="10.0.26200"
+	OSVersion="Windows 10"
+	OSPlatform="AMD64"
+	Is64Bits="1"
+	VendorString="AuthenticAMD"
+	VendorID="Advanced Micro Devices"
+	FamilyID="15"
+	ModelID="4"
+	ModelName="AMD Ryzen 5 7535HS with Radeon Graphics"
+	ProcessorCacheSize="64"
+	NumberOfLogicalCPU="12"
+	NumberOfPhysicalCPU="6"
+	TotalVirtualMemory="21532"
+	TotalPhysicalMemory="7484"
+	LogicalProcessorsPerPhysical="2"
+	ProcessorClockFrequency="3301.000000"
+	>
+	<Testing>
+		<StartDateTime>Sep 21 00:00 Eastern Daylight Time</StartDateTime>
+		<StartTestTime>1789963247</StartTestTime>
+		<TestList/>
+		<EndDateTime>Sep 21 00:00 Eastern Daylight Time</EndDateTime>
+		<EndTestTime>1789963247</EndTestTime>
+		<ElapsedMinutes>0</ElapsedMinutes>
+	</Testing>
+</Site>
