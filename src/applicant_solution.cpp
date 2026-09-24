@@ -12,131 +12,28 @@ void AntWorld::forage() {
     for (int i = 1; i < ants.size() + 1; i++){    
         
         Ant &ant = this->ants[i - 1];
-        
+
+        const int dx[] = {0, 1, 1,  1,  0, -1, -1, -1};
+        const int dy[] = {1, 1, 0, -1, -1, -1,  0,  1};
+
         Coord foodLoc = ant.closestFood(this->foodMap);
 
         if (foodLoc == Coord(-1, -1)) {//if there is no food in sight, go explore
 
 
-            if (ant.energy > 0 and i == 1) {
+            if (ant.energy > 0) {
                             
-                Coord destination = {ant.position.first, ant.position.second + 1}; //Move up
+                Coord destination = {ant.position.first + dx[i - 1], ant.position.second + dy[i - 1]}; //Move
                 
                 if (destination.first >= terrainMap.size() || destination.second >= terrainMap[0].size()){//if you reach the edge, go back and forth until you run out of energy
                     
-                    destination = {ant.position.first, ant.position.second - 1};
+                    destination = {ant.position.first - dx[i - 1], ant.position.second - dy[i - 1]};
                     ant.move(this->terrainMap, destination, this->foodMap);    
                 }
                 else {
                     ant.move(this->terrainMap, destination, this->foodMap);
                 }
             }
-            
-            
-            else if (ant.energy > 0 and i == 2) {
-                            
-                Coord destination = {ant.position.first + 1, ant.position.second + 1}; //Move up and to the right
-                
-                if (destination.first >= terrainMap.size() || destination.second >= terrainMap[0].size()){//if you reach the edge, go back and forth until you run out of energy
-                    
-                    destination = {ant.position.first - 1 , ant.position.second - 1};
-                    ant.move(this->terrainMap, destination, this->foodMap);    
-                }
-                else {
-                    ant.move(this->terrainMap, destination, this->foodMap);
-                }
-            }
-
-
-            else if (ant.energy > 0 and i == 3) {
-                            
-                Coord destination = {ant.position.first + 1, ant.position.second}; //Move to the right
-                
-                if (destination.first >= terrainMap.size() || destination.second >= terrainMap[0].size()){//if you reach the edge, go back and forth until you run out of energy
-                    
-                    destination = {ant.position.first - 1 , ant.position.second};
-                    ant.move(this->terrainMap, destination, this->foodMap);    
-                }
-                else {
-                    ant.move(this->terrainMap, destination, this->foodMap);
-                }
-            }
-
-
-            else if (ant.energy > 0 and i == 4) {
-                            
-                Coord destination = {ant.position.first + 1, ant.position.second - 1}; //Move down and to the right
-                
-                if (destination.first >= terrainMap.size() || destination.second >= terrainMap[0].size()){//if you reach the edge, go back and forth until you run out of energy
-                    
-                    destination = {ant.position.first - 1 , ant.position.second + 1};
-                    ant.move(this->terrainMap, destination, this->foodMap);    
-                }
-                else {
-                    ant.move(this->terrainMap, destination, this->foodMap);
-                }
-            }
-
-
-            else if (ant.energy > 0 and i == 5) {
-                            
-                Coord destination = {ant.position.first, ant.position.second - 1}; //Move down
-                
-                if (destination.first >= terrainMap.size() || destination.second >= terrainMap[0].size()){//if you reach the edge, go back and forth until you run out of energy
-                    
-                    destination = {ant.position.first, ant.position.second + 1};
-                    ant.move(this->terrainMap, destination, this->foodMap);    
-                }
-                else {
-                    ant.move(this->terrainMap, destination, this->foodMap);
-                }
-            }
-
-
-            else if (ant.energy > 0 and i == 6) {
-                            
-                Coord destination = {ant.position.first - 1, ant.position.second - 1}; //Move down and to the left
-                
-                if (destination.first >= terrainMap.size() || destination.second >= terrainMap[0].size()){//if you reach the edge, go back and forth until you run out of energy
-                    
-                    destination = {ant.position.first + 1 , ant.position.second + 1};
-                    ant.move(this->terrainMap, destination, this->foodMap);    
-                }
-                else {
-                    ant.move(this->terrainMap, destination, this->foodMap);
-                }
-            }
-
-
-            else if (ant.energy > 0 and i == 7) {
-                            
-                Coord destination = {ant.position.first - 1, ant.position.second}; //Move to the left
-                
-                if (destination.first >= terrainMap.size() || destination.second >= terrainMap[0].size()){//if you reach the edge, go back and forth until you run out of energy
-                    
-                    destination = {ant.position.first + 1 , ant.position.second};
-                    ant.move(this->terrainMap, destination, this->foodMap);    
-                }
-                else {
-                    ant.move(this->terrainMap, destination, this->foodMap);
-                }
-            }
-
-
-            else if (ant.energy > 0 and i == 8) {
-                            
-                Coord destination = {ant.position.first - 1, ant.position.second + 1}; //Move up and to the left
-                
-                if (destination.first >= terrainMap.size() || destination.second >= terrainMap[0].size()){//if you reach the edge, go back and forth until you run out of energy
-                    
-                    destination = {ant.position.first + 1 , ant.position.second - 1};
-                    ant.move(this->terrainMap, destination, this->foodMap);    
-                }
-                else {
-                    ant.move(this->terrainMap, destination, this->foodMap);
-                }
-            }
-
         } 
         else {//if you see food, get it and bring it home
             ant.move(this->terrainMap, foodLoc, this->foodMap);
