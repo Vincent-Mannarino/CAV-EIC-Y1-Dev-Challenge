@@ -31,6 +31,7 @@ public:
     Coord homeCoord = Coord(-1, -1);
     Coord position = Coord(-1, -1);
 
+    int id{-1};
     int foodRadius{3};
     int pheromoneRadius{5};
     bool pheromoneDropped{false};

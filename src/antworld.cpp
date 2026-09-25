@@ -9,6 +9,8 @@
 //
 
 Ant::Ant(int initEnergy, Coord homeCoordinates) {
+    static int nextAntId = 0;
+    this->id = nextAntId++;
     // assign initial energy
     this->energy = initEnergy;
 
