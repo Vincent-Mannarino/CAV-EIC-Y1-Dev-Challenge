@@ -21,8 +21,12 @@ void AntWorld::forage() {
         Coord homeCheck = {ant.homeCoord.first + CHECKx[ant.id], ant.homeCoord.second + CHECKy[ant.id]};
         
         Coord foodLoc = ant.closestFood(this->foodMap);
+
+        int rowDiff = abs(foodLoc.first - ant.homeCoord.first);
+        int colDiff = abs(foodLoc.second - ant.homeCoord.second);
+        int chebyshevDist = std::max(rowDiff, colDiff); //calculates chebyshev distance (distance like a chessboard) rathar than Manhattan distance
         
-        if (homeCheck.first >= terrainMap.size() || homeCheck.second >= terrainMap[0].size()){//if home is near an edge        
+        if (homeCheck.first >= terrainMap.size() || homeCheck.second >= terrainMap[0].size()){//if home is near an edge
             
             if (foodLoc == Coord(-1, -1)) {//if there is no food in sight
                 
@@ -49,7 +53,7 @@ void AntWorld::forage() {
             }
         }
 
-        else if(abs(foodLoc.first - ant.homeCoord.first) + abs(foodLoc.second - ant.homeCoord.second) >= 5) {
+        else if(chebyshevDist > ant.foodRadius) {//if food is outside home view range
         
                 ant.move(this->terrainMap, foodLoc, this->foodMap); //get food
                 ant.returnHome(this->terrainMap, this->foodMap);
