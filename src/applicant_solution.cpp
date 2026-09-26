@@ -22,6 +22,7 @@ void AntWorld::forage() {
         Coord homeCheck = {ant.homeCoord.first + CHECKx[ant.id], ant.homeCoord.second + CHECKy[ant.id]};
         
         Coord foodLoc = ant.closestFood(this->foodMap);
+        Coord pheromoneLoc = ant.closestPheromone(this->pheromoneMap);
 
         int rowDiff = abs(foodLoc.first - ant.homeCoord.first);
         int colDiff = abs(foodLoc.second - ant.homeCoord.second);
@@ -32,10 +33,15 @@ void AntWorld::forage() {
         if (homeCheck.first >= terrainMap.size() || homeCheck.second >= terrainMap[0].size()){//if home is near an edge
             
             if (foodLoc == Coord(-1, -1)) {//if there is no food in sight
-                
-                Coord destination = {rand() % (int)terrainMap.size(), rand() % (int)terrainMap[0].size()}; //go somewhere random. later replace this with going towards pheromones
-                ant.move(this->terrainMap, destination, this->foodMap);
-            
+                if (pheromoneLoc == Coord(-1, -1)) { //no pheromones in sight
+                    Coord destination = {rand() % (int)terrainMap.size(), rand() % (int)terrainMap[0].size()}; //go somewhere random. later replace this with going towards pheromones
+                    ant.move(this->terrainMap, destination, this->foodMap);
+                }
+                else {
+                    Coord destination = pheromoneLoc;
+                    ant.move(this->terrainMap, destination, this->foodMap);
+                    this->pheromoneMap[destination.first][destination.second] = 0; //gets rid of pheromone at this location
+                }
             }
             else{
                 ant.move(this->terrainMap, foodLoc, this->foodMap); //get food
@@ -51,10 +57,17 @@ void AntWorld::forage() {
                    
             Coord destination = {ant.position.first + dx[ant.id], ant.position.second + dy[ant.id]}; //Move
             
-            if (destination.first >= terrainMap.size() || destination.second >= terrainMap[0].size()){//if you reach the edge, go back and forth until you run out of energy
-                
-                destination = {ant.position.first - dx[ant.id], ant.position.second - dy[ant.id]};
-                ant.move(this->terrainMap, destination, this->foodMap);    
+            if (destination.first >= terrainMap.size() || destination.second >= terrainMap[0].size()){//if you reach the edge
+
+                if (pheromoneLoc == Coord(-1, -1)) { //no pheromones in sight
+                    Coord destination = {rand() % (int)terrainMap.size(), rand() % (int)terrainMap[0].size()}; //go somewhere random. later replace this with going towards pheromones
+                    ant.move(this->terrainMap, destination, this->foodMap);
+                }
+                else {
+                    Coord destination = pheromoneLoc;
+                    ant.move(this->terrainMap, destination, this->foodMap);
+                    this->pheromoneMap[destination.first][destination.second] = 0; //gets rid of pheromone at this location
+                } 
             }
             else {
                 ant.move(this->terrainMap, destination, this->foodMap);
@@ -73,7 +86,7 @@ void AntWorld::forage() {
                             
             Coord destination = {ant.position.first + dx[ant.id], ant.position.second + dy[ant.id]}; //Move
             
-            if (destination.first >= terrainMap.size() || destination.second >= terrainMap[0].size()){//if you reach the edge, go back and forth until you run out of energy
+            if (destination.first >= terrainMap.size() || destination.second >= terrainMap[0].size()){//if you reach the edge
                 
                 destination = {ant.position.first - dx[ant.id], ant.position.second - dy[ant.id]};
                 ant.move(this->terrainMap, destination, this->foodMap);    
@@ -87,9 +100,10 @@ void AntWorld::forage() {
         }
         
 
+
         //all ants
         auto foodLocations = ant.foodScan(this->foodMap);
-        if (foodLocations.size() >= 25) {
+        if (foodLocations.size() >= 13) {
 
             ant.dropPheromone(this->pheromoneMap);
 
