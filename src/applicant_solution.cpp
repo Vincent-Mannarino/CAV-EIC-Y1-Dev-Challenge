@@ -27,6 +27,8 @@ void AntWorld::forage() {
         int colDiff = abs(foodLoc.second - ant.homeCoord.second);
         int chebyshevDist = std::max(rowDiff, colDiff); //calculates chebyshev distance (distance like a chessboard) rathar than Manhattan distance
         
+
+        //ants that don't initially explore
         if (homeCheck.first >= terrainMap.size() || homeCheck.second >= terrainMap[0].size()){//if home is near an edge
             
             if (foodLoc == Coord(-1, -1)) {//if there is no food in sight
@@ -41,6 +43,10 @@ void AntWorld::forage() {
             }
             
         }
+
+
+
+        //ants that go exploring
         else if (foodLoc == Coord(-1, -1)) {//if there is no food in sight
                    
             Coord destination = {ant.position.first + dx[ant.id], ant.position.second + dy[ant.id]}; //Move
@@ -55,6 +61,7 @@ void AntWorld::forage() {
             }
         }
 
+        
         else if(chebyshevDist > ant.foodRadius) {//if food is outside home view range
         
                 ant.move(this->terrainMap, foodLoc, this->foodMap); //get food
@@ -73,8 +80,19 @@ void AntWorld::forage() {
             
             }
             else {
+
                 ant.move(this->terrainMap, destination, this->foodMap);
+
             }
+        }
+        
+
+        //all ants
+        auto foodLocations = ant.foodScan(this->foodMap);
+        if (foodLocations.size() >= 25) {
+
+            ant.dropPheromone(this->pheromoneMap);
+
         }
     }
 }

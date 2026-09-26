@@ -31,7 +31,7 @@ Coord Ant::closestFood(MapTemplate &foodMap) {
     std::vector<Coord> foodLocations = this->foodScan(foodMap);
     
     if (foodLocations.empty()) {
-        return {-1, -1};   // "nothing visible"
+        return {-1, -1};   // no food visible
     }
 
     Coord best = foodLocations[0];
