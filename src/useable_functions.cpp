@@ -69,6 +69,26 @@ std::vector<Coord> Ant::pheromoneScan(MapTemplate &pheromoneMap) {
     return pheromoneLocations;
 }
 
+//runs pheromoneScan and returns the closest pheromone location to the ant's current position
+Coord Ant::closestPheromone(MapTemplate &pheromoneMap) {
+    std::vector<Coord> pheromoneLocations = this->pheromoneScan(pheromoneMap);
+    
+    if (pheromoneLocations.empty()) {
+        return {-1, -1};   // no pheromones visible
+    }
+
+    Coord best = pheromoneLocations[0];
+    int bestDistance = abs(pheromoneLocations[0].first - this->position.first) + abs(pheromoneLocations[0].second - this->position.second);
+
+    for (int i = 1; i < pheromoneLocations.size(); ++i) {
+        if (abs(pheromoneLocations[i].first - this->position.first) + abs(pheromoneLocations[i].second - this->position.second) < bestDistance) {
+            best = pheromoneLocations[i];
+            bestDistance = abs(pheromoneLocations[i].first - this->position.first) + abs(pheromoneLocations[i].second - this->position.second);
+        }
+    }
+    return best;
+}
+
 /** @brief this function computes the most energy efficient route from the ant's current position to target destination.
  * it will follow the shortest path for as long as it has the energy to do so. When the ant reaches it's final position,
  * if food exists, it will pick it up.

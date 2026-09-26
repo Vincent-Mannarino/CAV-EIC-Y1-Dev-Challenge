@@ -16,6 +16,8 @@ public:
 
     Coord closestFood(MapTemplate &foodMap);
 
+    Coord closestPheromone(MapTemplate &pheromoneMap);
+
     std::vector<Coord> pheromoneScan(MapTemplate &pheromoneMap);
 
     Coord move(MapTemplate &terrainMap, Coord dest, MapTemplate &foodMap);
