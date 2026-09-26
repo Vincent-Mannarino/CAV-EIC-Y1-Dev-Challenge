@@ -3,6 +3,7 @@
 //
 
 #include "../include/antworld.h"
+#include <cstdlib>   // for rand()
 
 
 /** @brief this is where you as the applicant will make use of the above functions to develop your solution.
@@ -30,7 +31,8 @@ void AntWorld::forage() {
             
             if (foodLoc == Coord(-1, -1)) {//if there is no food in sight
                 
-                ant.energy = 0; //kill yourself. later replace this with going towards pheromones
+                Coord destination = {rand() % (int)terrainMap.size(), rand() % (int)terrainMap[0].size()}; //go somewhere random. later replace this with going towards pheromones
+                ant.move(this->terrainMap, destination, this->foodMap);
             
             }
             else{
