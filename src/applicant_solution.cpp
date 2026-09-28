@@ -10,7 +10,46 @@
  * here are some existing examples of how calling these functions works to help get you started!
  */
 void AntWorld::forage() {
-    
+    //SOLUTION 2
+
+    const std::vector<Coord> startPos {{3, 3}, {3, 4}, {3, 11}, {4, 11}, {9, 9}, {10, 3}, {11, 4}, {11, 11}};
+
+    static int posCheck[] = {0, 0, 0, 0, 0, 0, 0, 0};
+            
+
+    for (int i = 1; i < ants.size() + 1; i++){ //for each ant
+        Ant &ant = this->ants[i - 1];
+
+        if (posCheck[ant.id] <= 0) { //ants innitially go to their designated exploring zone
+            ant.move(this->terrainMap, startPos[ant.id], this->foodMap);
+            
+            if (std::max(abs(startPos[ant.id].first - ant.homeCoord.first), abs(startPos[ant.id].second - ant.homeCoord.second)) >= 10) { //calculates Chebyshev distance and dropps a pheromone if its designated search zone is far from home so it can get help from other ants if it runs out of evergy before it collects all the food.
+                ant.dropPheromone(this->pheromoneMap);
+            }
+
+        }
+        
+        Coord foodLoc = ant.closestFood(this->foodMap);
+        Coord pheromoneLoc = ant.closestPheromone(this->pheromoneMap);
+
+        if (foodLoc == Coord(-1, -1)) {//if there is no food in sight
+            posCheck[ant.id] = ++posCheck[ant.id];
+
+            if (pheromoneLoc == Coord(-1, -1)) { //no pheromones in sight
+                Coord destination = {rand() % (int)terrainMap.size(), rand() % (int)terrainMap[0].size()}; //go somewhere random. later replace this with going towards pheromones
+                ant.move(this->terrainMap, destination, this->foodMap);
+            }
+            else {
+                Coord destination = pheromoneLoc;
+                ant.move(this->terrainMap, destination, this->foodMap);
+                this->pheromoneMap[destination.first][destination.second] = 0; //gets rid of pheromone at this location
+            } 
+        }
+        else { //get food and bring it home
+            ant.move(this->terrainMap, foodLoc, this->foodMap); //get food
+            ant.returnHome(this->terrainMap, this->foodMap);
+        }
+    }
 }
     
     
