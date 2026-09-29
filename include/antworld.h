@@ -14,9 +14,9 @@ public:
 
     std::vector<Coord> foodScan(MapTemplate &foodMap);
 
-    Coord closestFood(MapTemplate &foodMap);
+    Coord closestFood(MapTemplate &foodMap, MapTemplate &terrainMap);
 
-    Coord closestPheromone(MapTemplate &pheromoneMap);
+    Coord closestPheromone(MapTemplate &pheromoneMap, MapTemplate &terrainMap);
 
     std::vector<Coord> pheromoneScan(MapTemplate &pheromoneMap);
 
