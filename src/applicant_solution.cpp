@@ -12,7 +12,7 @@
 void AntWorld::forage() {
     //SOLUTION 2
 
-    const std::vector<Coord> startPos {{3, 3}, {3, 4}, {3, 11}, {4, 11}, {9, 9}, {10, 3}, {11, 4}, {11, 11}};
+    const std::vector<Coord> startPos {{4, 4}, {4, 8}, {4, 12}, {8, 4}, {8, 12}, {12, 4}, {12, 8}, {12, 12}}; //only square not covered is the center square (8, 8)
 
     static int posCheck[] = {0, 0, 0, 0, 0, 0, 0, 0};
             
@@ -23,7 +23,7 @@ void AntWorld::forage() {
         if (posCheck[ant.id] <= 0) { //ants innitially go to their designated exploring zone
             ant.move(this->terrainMap, startPos[ant.id], this->foodMap);
             
-            if (std::max(abs(startPos[ant.id].first - ant.homeCoord.first), abs(startPos[ant.id].second - ant.homeCoord.second)) >= 10) { //calculates Chebyshev distance and dropps a pheromone if its designated search zone is far from home so it can get help from other ants if it runs out of evergy before it collects all the food.
+            if (std::max(abs(startPos[ant.id].first - ant.homeCoord.first), abs(startPos[ant.id].second - ant.homeCoord.second)) >= 7) { //calculates Chebyshev distance and dropps a pheromone if its designated search zone is far from home so it can get help from other ants if it runs out of evergy before it collects all the food.
                 ant.dropPheromone(this->pheromoneMap);
             }
 
