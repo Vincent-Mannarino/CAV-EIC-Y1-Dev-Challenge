@@ -128,12 +128,14 @@ Coord Ant::closestFood(MapTemplate &foodMap, MapTemplate &terrainMap) {
     }
 
     Coord best = foodLocations[0];
-    std::vector<Coord> path = shortestPath(terrainMap, this->position, foodLocations[0]); 
-    int bestEnergy = calculatePathCost(terrainMap, path);
+    std::vector<Coord> pathFood = shortestPath(terrainMap, this->position, foodLocations[0]); 
+    std::vector<Coord> pathHome = shortestPath(terrainMap, foodLocations[0], this->homeCoord); 
+    int bestEnergy = calculatePathCost(terrainMap, pathFood) + calculatePathCost(terrainMap, pathHome); //calculates energy cost to the food and back home
 
     for (int i = 1; i < foodLocations.size(); ++i) {
-        std::vector<Coord> path = shortestPath(terrainMap, this->position, foodLocations[i]); 
-        int pathEnergy = calculatePathCost(terrainMap, path);
+        pathFood = shortestPath(terrainMap, this->position, foodLocations[i]); 
+        pathHome = shortestPath(terrainMap, foodLocations[i], this->homeCoord);
+        int pathEnergy = calculatePathCost(terrainMap, pathFood) + calculatePathCost(terrainMap, pathHome); //calculates energy cost to the food and back home
         if (pathEnergy < bestEnergy) {
             best = foodLocations[i];
             bestEnergy = pathEnergy;
