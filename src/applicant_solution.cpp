@@ -39,20 +39,7 @@ const int CHECKy[] = {4, 4, 0, -4, -4, -4, 0, 4};
         if (homeCheck.first >= terrainMap.size() || homeCheck.second >= terrainMap[0].size()){
             //if there is no food in sight
             if (foodLoc == Coord(-1, -1)) {
-                //if there are no pheromones in sight
-                if (pheromoneLoc == Coord(-1, -1)) { 
-                    //go somewhere random
-                    Coord destination = {rand() % (int)terrainMap.size(), rand() % (int)terrainMap[0].size()}; 
-                    ant.move(this->terrainMap, destination, this->foodMap);
-                }
-                //no food in sight, but can see a pheromone
-                else {
-                    //goes to the pheromone
-                    Coord destination = pheromoneLoc;
-                    ant.move(this->terrainMap, destination, this->foodMap);
-                    //gets rid of pheromone at this location after being visited
-                    this->pheromoneMap[destination.first][destination.second] = 0; 
-                }
+                ant.exploreOrFollowPheromone(pheromoneLoc, this->terrainMap, this->pheromoneMap, this->foodMap);
             }
             //if there is food in sight
             else{
