@@ -29,6 +29,12 @@ const int CHECKy[] = {4, 4, 0, -4, -4, -4, 0, 4};
         int rowDiff = abs(foodLoc.first - ant.homeCoord.first);
         int colDiff = abs(foodLoc.second - ant.homeCoord.second);
         int chebyshevDist = std::max(rowDiff, colDiff); 
+
+        //if home is in center of map (will not trigger any ants to not explore)
+        if (ant.homeCoord.first >= 4 && ant.homeCoord.first <= 10 && ant.homeCoord.second >= 4 && ant.homeCoord.second <= 10) {
+            //hard code chebyshevDist to 100 so the ants always pick up the food near home
+            chebyshevDist = 100;
+        }
         
         //is used to check if home is near an edge, and therfore if an ant should try exploring in that direction
         Coord homeCheck = {ant.homeCoord.first + CHECKx[ant.id], ant.homeCoord.second + CHECKy[ant.id]};
@@ -87,8 +93,8 @@ const int CHECKy[] = {4, 4, 0, -4, -4, -4, 0, 4};
         //all ants:
         //if at least 4 food is in view, drop pheromones to aleart other ants to come help
         auto foodLocations = ant.foodScan(this->foodMap); 
-        if (foodLocations.size() >= 4) {
-            ant.dropPheromone(this->pheromoneMap);
+        if (foodLocations.size() >= 4) { 
+            ant.dropPheromone(this->pheromoneMap); 
         }
     }
 }
