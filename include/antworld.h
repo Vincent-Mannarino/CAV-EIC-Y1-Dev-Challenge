@@ -12,6 +12,8 @@ class Ant {
 public:
     Ant(int initEnergy, Coord homeCoordinates);
 
+    void exploreOrFollowPheromone(Coord pheromoneLoc, MapTemplate &terrainMap, MapTemplate &pheromoneMap, MapTemplate foodMap);
+
     std::vector<Coord> foodScan(MapTemplate &foodMap);
 
     Coord closestFood(MapTemplate &foodMap, MapTemplate &terrainMap);
