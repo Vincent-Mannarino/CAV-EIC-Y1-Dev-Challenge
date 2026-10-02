@@ -12,10 +12,15 @@
 void AntWorld::forage() {
 //SOLUTION 1
 
-const int dx[] = {0, 3, 3,  3,  0, -3, -3, -3};
-const int dy[] = {3, 3, 0, -3, -3, -3,  0,  3};
-const int CHECKx[] = {0, 4, 4, 4, 0, -4, -4, -4};
-const int CHECKy[] = {4, 4, 0, -4, -4, -4, 0, 4};
+const int moveDist = 3;
+const int checkDist = 4;
+
+const int foodDensity = 4;
+
+const int dx[] = {0, moveDist, moveDist,  moveDist,  0, -moveDist, -moveDist, -moveDist};
+const int dy[] = {moveDist, moveDist, 0, -moveDist, -moveDist, -moveDist,  0,  moveDist};
+const int CHECKx[] = {0, checkDist, checkDist, checkDist, 0, -checkDist, -checkDist, -checkDist};
+const int CHECKy[] = {checkDist, checkDist, 0, -checkDist, -checkDist, -checkDist, 0, checkDist};
 
 
     for (int i = 1; i < ants.size() + 1; i++){    
@@ -31,7 +36,7 @@ const int CHECKy[] = {4, 4, 0, -4, -4, -4, 0, 4};
         int chebyshevDist = std::max(rowDiff, colDiff); 
 
         //if home is in center of map (will not trigger any ants to not explore)
-        if (ant.homeCoord.first >= 4 && ant.homeCoord.first <= 10 && ant.homeCoord.second >= 4 && ant.homeCoord.second <= 10) {
+        if (ant.homeCoord.first >= checkDist && ant.homeCoord.first <= (14 - checkDist) && ant.homeCoord.second >= checkDist && ant.homeCoord.second <= (14 - checkDist)) {
             //hard code chebyshevDist to 100 so the ants always pick up the food near home
             chebyshevDist = 100;
         }
@@ -93,7 +98,7 @@ const int CHECKy[] = {4, 4, 0, -4, -4, -4, 0, 4};
         //all ants:
         //if at least 4 food is in view, drop pheromones to aleart other ants to come help
         auto foodLocations = ant.foodScan(this->foodMap); 
-        if (foodLocations.size() >= 4) { 
+        if (foodLocations.size() >= foodDensity) { 
             ant.dropPheromone(this->pheromoneMap); 
         }
     }
